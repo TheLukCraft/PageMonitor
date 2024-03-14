@@ -1,3 +1,6 @@
+// Ignore Spelling: APP
+
+using PageMonitor.Application.Logic.Abstractions;
 using PageMonitor.Infrastructure.Persistence;
 using Serilog;
 
@@ -31,6 +34,11 @@ namespace PageMonitor.WebAPI
             // Add services to the container.
             builder.Services.AddSqlDatabase(builder.Configuration.GetConnectionString("MainDbSql")!);
             builder.Services.AddControllers();
+
+            builder.Services.AddMediatR(c =>
+            {
+                c.RegisterServicesFromAssemblyContaining(typeof(BaseCommandHandler));
+            });
 
             var app = builder.Build();
 
