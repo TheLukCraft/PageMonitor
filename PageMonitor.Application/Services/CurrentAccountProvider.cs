@@ -2,6 +2,7 @@
 using PageMonitor.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using PageMonitor.Application.Exceptions;
+using EFCoreSecondLevelCacheInterceptor;
 
 namespace PageMonitor.Application.Services
 {
@@ -25,6 +26,7 @@ namespace PageMonitor.Application.Services
                     .Where(au => au.UserId == userId)
                     .OrderBy(au => au.Id)
                     .Select(au => (int?)au.AccountId)
+                    .Cacheable()
                     .FirstOrDefaultAsync();
             }
             return null;
@@ -38,7 +40,7 @@ namespace PageMonitor.Application.Services
                 throw new UnauthorizedAccessException();
             }
 
-            var account = await _applicationDbContext.Accounts.FirstOrDefaultAsync(a => a.Id == accountId.Value);
+            var account = await _applicationDbContext.Accounts.Cacheable().FirstOrDefaultAsync(a => a.Id == accountId.Value);
             if (account == null)
             {
                 throw new ErrorException("AccountDoesNotExist");

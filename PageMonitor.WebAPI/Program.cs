@@ -33,6 +33,7 @@ namespace PageMonitor.WebAPI
             .ReadFrom.Services(services)
             .Enrich.FromLogContext());
             // Add services to the container.
+            builder.Services.AddDatabaseCache();
             builder.Services.AddSqlDatabase(builder.Configuration.GetConnectionString("MainDbSql")!);
             builder.Services.AddControllers();
 
