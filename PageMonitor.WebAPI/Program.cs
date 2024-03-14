@@ -4,6 +4,7 @@ using PageMonitor.Application.Logic.Abstractions;
 using PageMonitor.Infrastructure.Persistence;
 using Serilog;
 using PageMonitor.Application;
+using PageMonitor.Infrastructure.Auth;
 
 namespace PageMonitor.WebAPI
 {
@@ -36,6 +37,7 @@ namespace PageMonitor.WebAPI
             builder.Services.AddDatabaseCache();
             builder.Services.AddSqlDatabase(builder.Configuration.GetConnectionString("MainDbSql")!);
             builder.Services.AddControllers();
+            builder.Services.AddJwtAuth(builder.Configuration);
 
             builder.Services.AddMediatR(c =>
             {
