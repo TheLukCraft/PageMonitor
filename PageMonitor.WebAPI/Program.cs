@@ -17,6 +17,10 @@ namespace PageMonitor.WebAPI
                 .CreateBootstrapLogger();
 
             var builder = WebApplication.CreateBuilder(args);
+            if (builder.Environment.IsDevelopment())
+            {
+                builder.Configuration.AddJsonFile("appsettings.Development.local.json");
+            }
 
             builder.Host.UseSerilog((context, services, configuration) => configuration
             .Enrich.WithProperty("Application", APP_NAME)
