@@ -5,6 +5,7 @@ using PageMonitor.Infrastructure.Persistence;
 using Serilog;
 using PageMonitor.Application;
 using PageMonitor.Infrastructure.Auth;
+using PageMonitor.WebAPI.Application.Auth;
 
 namespace PageMonitor.WebAPI
 {
@@ -34,10 +35,12 @@ namespace PageMonitor.WebAPI
             .ReadFrom.Services(services)
             .Enrich.FromLogContext());
             // Add services to the container.
+            builder.Services.AddHttpContextAccessor();
             builder.Services.AddDatabaseCache();
             builder.Services.AddSqlDatabase(builder.Configuration.GetConnectionString("MainDbSql")!);
             builder.Services.AddControllers();
             builder.Services.AddJwtAuth(builder.Configuration);
+            builder.Services.AddJwtAuthenticationDataProvider(builder.Configuration);
 
             builder.Services.AddMediatR(c =>
             {

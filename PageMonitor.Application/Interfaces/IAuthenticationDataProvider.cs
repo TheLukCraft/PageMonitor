@@ -2,6 +2,6 @@
 {
     public interface IAuthenticationDataProvider
     {
-        int GetUserId();
+        int? GetUserId();
     }
 }
