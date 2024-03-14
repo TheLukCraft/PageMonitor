@@ -42,6 +42,8 @@ namespace PageMonitor.WebAPI
 
             var app = builder.Build();
 
+            app.UseExceptionHandler();
+
             // Configure the HTTP request pipeline.
 
             app.UseAuthorization();
