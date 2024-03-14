@@ -7,6 +7,6 @@ namespace PageMonitor.Domain.Entities
         public string Email { get; set; } = default!;
         public string HashedPassword { get; set; } = default!;
         public DateTimeOffset RegisterDate { get; set; }
-        public ICollection<AccountUser> Users { get; set; } = new List<AccountUser>();
+        public ICollection<AccountUser> AccountUsers { get; set; } = new List<AccountUser>();
     }
 }
