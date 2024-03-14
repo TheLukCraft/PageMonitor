@@ -6,6 +6,6 @@ namespace PageMonitor.Application.Interfaces
     {
         Task<Account> GetAuthenticatedAccount();
 
-        Task<int> GetAccountId();
+        Task<int?> GetAccountId();
     }
 }
