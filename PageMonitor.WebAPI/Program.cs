@@ -6,6 +6,7 @@ using Serilog;
 using PageMonitor.Application;
 using PageMonitor.Infrastructure.Auth;
 using PageMonitor.WebAPI.Application.Auth;
+using PageMonitor.WebAPI.Middlewares;
 
 namespace PageMonitor.WebAPI
 {
@@ -71,7 +72,7 @@ namespace PageMonitor.WebAPI
                 app.UseSwaggerUI();
             }
 
-            app.UseExceptionHandler();
+            app.UseExceptionResultMiddleware();
 
             // Configure the HTTP request pipeline.
 
