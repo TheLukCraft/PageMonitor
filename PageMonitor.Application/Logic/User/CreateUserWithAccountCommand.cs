@@ -1,9 +1,11 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using PageMonitor.Application.Exceptions;
 using PageMonitor.Application.Interfaces;
 using PageMonitor.Application.Logic.Abstractions;
 using PageMonitor.Domain.Entities;
+using static PageMonitor.Application.Logic.User.CreateUserWithAccountCommand;
 
 namespace PageMonitor.Application.Logic.User
 {
@@ -72,6 +74,19 @@ namespace PageMonitor.Application.Logic.User
                     UserId = user.Id,
                 };
             }
+        }
+    }
+
+    public class Validator : AbstractValidator<Request>
+    {
+        public Validator()
+        {
+            RuleFor(x => x.Email).NotEmpty();
+            RuleFor(x => x.Email).EmailAddress();
+            RuleFor(x => x.Email).MaximumLength(100);
+
+            RuleFor(x => x.Password).NotEmpty();
+            RuleFor(x => x.Password).MaximumLength(50);
         }
     }
 }
