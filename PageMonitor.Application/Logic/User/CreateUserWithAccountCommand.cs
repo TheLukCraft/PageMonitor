@@ -1,9 +1,9 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using PageMonitor.Application.Exceptions;
 using PageMonitor.Application.Interfaces;
 using PageMonitor.Application.Logic.Abstractions;
 using PageMonitor.Domain.Entities;
-using System.Data.Entity;
 
 namespace PageMonitor.Application.Logic.User
 {
