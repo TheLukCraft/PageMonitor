@@ -5,11 +5,11 @@ using PageMonitor.Application.Interfaces;
 
 namespace PageMonitor.Infrastructure.Auth
 {
-    public static class AuthConfiguration
+    public static class JwtAuthConfiguration
     {
         public static IServiceCollection AddJwtAuth(this IServiceCollection services, IConfiguration configuration)
         {
-            services.Configure<JWTAuthenticationOptions>(configuration.GetSection("JwtAuthentication"));
+            services.Configure<JwtAuthenticationOptions>(configuration.GetSection("JwtAuthentication"));
             services.AddSingleton<JwtManager>();
 
             return services;

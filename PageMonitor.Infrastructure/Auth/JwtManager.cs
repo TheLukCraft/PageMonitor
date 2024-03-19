@@ -8,10 +8,10 @@ namespace PageMonitor.Infrastructure.Auth
 {
     public class JwtManager
     {
-        private readonly JWTAuthenticationOptions _jwtOptions;
+        private readonly JwtAuthenticationOptions _jwtOptions;
         public const string UserIdClaim = "UserId";
 
-        public JwtManager(IOptions<JWTAuthenticationOptions> jwtOptions)
+        public JwtManager(IOptions<JwtAuthenticationOptions> jwtOptions)
         {
             _jwtOptions = jwtOptions.Value;
         }

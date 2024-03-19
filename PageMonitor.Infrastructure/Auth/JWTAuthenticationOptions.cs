@@ -2,7 +2,7 @@
 
 namespace PageMonitor.Infrastructure.Auth
 {
-    public class JWTAuthenticationOptions
+    public class JwtAuthenticationOptions
     {
         public string? Secret { get; set; }
         public string? Issuer { get; set; }
