@@ -9,7 +9,7 @@ using System.CodeDom;
 
 namespace PageMonitor.Application.Logic.User;
 
-public static class LoggedInUserCommand
+public static class LoggedInUserQuery
 {
     public class Request : IRequest<Result>
     {

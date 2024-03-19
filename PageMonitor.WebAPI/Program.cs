@@ -73,7 +73,7 @@ namespace PageMonitor.WebAPI
                 app.UseSwaggerUI();
             }
 
-            app.UseExceptionResultMiddleware();
+            //app.UseExceptionResultMiddleware();
 
             // Configure the HTTP request pipeline.
 

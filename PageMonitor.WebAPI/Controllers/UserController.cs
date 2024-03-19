@@ -50,7 +50,7 @@ namespace PageMonitor.WebAPI.Controllers
         [HttpGet]
         public async Task<ActionResult> GetLoggedInUser()
         {
-            var data = await _mediator.Send(new LoggedInUserCommand.Request() { });
+            var data = await _mediator.Send(new LoggedInUserQuery.Request() { });
             return Ok(data);
         }
 
