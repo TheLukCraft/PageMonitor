@@ -22,6 +22,15 @@ namespace PageMonitor.WebAPI.Controllers
         }
 
         [HttpPost]
+        public async Task<ActionResult> CreateUserWithAccount([FromBody] CreateUserWithAccountCommand.Request model)
+        {
+            var createAccountResult = await _mediator.Send(model);
+            var token = _jwtManager.GenerateUserToken(createAccountResult.UserId);
+            SetTokenCookie(token);
+            return Ok(createAccountResult);
+        }
+
+        [HttpPost]
         public async Task<ActionResult> Login([FromBody] LoginCommand.Request model)
         {
             var loginResult = await _mediator.Send(model);
@@ -31,12 +40,11 @@ namespace PageMonitor.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateUserWithAccount([FromBody] CreateUserWithAccountCommand.Request model)
+        public async Task<ActionResult> Logout()
         {
-            var createAccountResult = await _mediator.Send(model);
-            var token = _jwtManager.GenerateUserToken(createAccountResult.UserId);
-            SetTokenCookie(token);
-            return Ok(createAccountResult);
+            var logoutResult = await _mediator.Send(new LogoutCommand.Request());
+            DeleteTokenCookie();
+            return Ok(logoutResult);
         }
 
         private void SetTokenCookie(string token)
@@ -61,6 +69,14 @@ namespace PageMonitor.WebAPI.Controllers
             }
 
             Response.Cookies.Append(CookieSettings.CookieName, token, cookieOption);
+        }
+
+        private void DeleteTokenCookie()
+        {
+            Response.Cookies.Delete(CookieSettings.CookieName, new CookieOptions()
+            {
+                HttpOnly = true,
+            });
         }
     }
 }
