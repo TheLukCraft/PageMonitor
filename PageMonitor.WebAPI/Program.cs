@@ -7,6 +7,8 @@ using PageMonitor.Application;
 using PageMonitor.Infrastructure.Auth;
 using PageMonitor.WebAPI.Application.Auth;
 using PageMonitor.WebAPI.Middlewares;
+using Microsoft.AspNetCore.Mvc;
+using System.Text.Json.Serialization;
 
 namespace PageMonitor.WebAPI
 {
@@ -39,7 +41,15 @@ namespace PageMonitor.WebAPI
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddDatabaseCache();
             builder.Services.AddSqlDatabase(builder.Configuration.GetConnectionString("MainDbSql")!);
-            builder.Services.AddControllers();
+
+            builder.Services.AddControllersWithViews(options =>
+            {
+                if (!builder.Environment.IsDevelopment())
+                {
+                    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+                }
+            }).AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+
             builder.Services.AddJwtAuth(builder.Configuration);
             builder.Services.AddJwtAuthenticationDataProvider(builder.Configuration);
             builder.Services.AddPasswordManager();
@@ -63,6 +73,11 @@ namespace PageMonitor.WebAPI
 
                     return name;
                 });
+            });
+
+            builder.Services.AddAntiforgery(o =>
+            {
+                o.HeaderName = "X-XSRF-TOKEN";
             });
 
             builder.Services.AddCors();

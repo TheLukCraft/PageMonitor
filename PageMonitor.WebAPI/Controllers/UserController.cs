@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using PageMonitor.Application.Logic.User;
@@ -14,14 +15,17 @@ namespace PageMonitor.WebAPI.Controllers
     {
         private readonly CookieSettings? _cookieSettings;
         private readonly JwtManager _jwtManager;
+        private readonly IAntiforgery _antiforgery;
 
-        public UserController(ILogger<UserController> logger, IMediator mediator, IOptions<CookieSettings> cookieSettings, JwtManager jwtManager) : base(logger, mediator)
+        public UserController(ILogger<UserController> logger, IMediator mediator, IOptions<CookieSettings> cookieSettings, JwtManager jwtManager, IAntiforgery antiforgery) : base(logger, mediator)
         {
             _cookieSettings = cookieSettings != null ? cookieSettings.Value : null;
             _jwtManager = jwtManager;
+            _antiforgery = antiforgery;
         }
 
         [HttpPost]
+        [IgnoreAntiforgeryToken]
         public async Task<ActionResult> CreateUserWithAccount([FromBody] CreateUserWithAccountCommand.Request model)
         {
             var createAccountResult = await _mediator.Send(model);
@@ -52,6 +56,13 @@ namespace PageMonitor.WebAPI.Controllers
         {
             var data = await _mediator.Send(new LoggedInUserQuery.Request() { });
             return Ok(data);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> AntiforgeryToken()
+        {
+            var tokens = _antiforgery.GetAndStoreTokens(HttpContext);
+            return Ok(tokens.RequestToken);
         }
 
         private void SetTokenCookie(string token)
