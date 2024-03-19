@@ -47,6 +47,13 @@ namespace PageMonitor.WebAPI.Controllers
             return Ok(logoutResult);
         }
 
+        [HttpGet]
+        public async Task<ActionResult> GetLoggedInUser()
+        {
+            var data = await _mediator.Send(new LoggedInUserCommand.Request() { });
+            return Ok(data);
+        }
+
         private void SetTokenCookie(string token)
         {
             var cookieOption = new CookieOptions()
