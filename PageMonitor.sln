@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PageMonitor.Domain", "PageMonitor.Domain\PageMonitor.Domain.csproj", "{FCDBDE0F-5499-45B4-9275-B71676A5456A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PageMonitor.Domain", "PageMonitor.Domain\PageMonitor.Domain.csproj", "{FCDBDE0F-5499-45B4-9275-B71676A5456A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PageMonitor.Application", "PageMonitor.Application\PageMonitor.Application.csproj", "{F5B3B408-B888-4055-BB63-EFC1FB258C70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PageMonitor.Application", "PageMonitor.Application\PageMonitor.Application.csproj", "{F5B3B408-B888-4055-BB63-EFC1FB258C70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PageMonitor.Infrastructure", "PageMonitor.Infrastructure\PageMonitor.Infrastructure.csproj", "{5F9DAB03-CC12-43A6-B4E7-D47145EEAD38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PageMonitor.Infrastructure", "PageMonitor.Infrastructure\PageMonitor.Infrastructure.csproj", "{5F9DAB03-CC12-43A6-B4E7-D47145EEAD38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PageMonitor.WebAPI", "PageMonitor.WebAPI\PageMonitor.WebAPI.csproj", "{1FB057D6-BDFE-4931-AA8C-441472924A57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PageMonitor.WebAPI", "PageMonitor.WebAPI\PageMonitor.WebAPI.csproj", "{1FB057D6-BDFE-4931-AA8C-441472924A57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PageMonitor.Application.Tests", "PageMonitor.Application.Tests\PageMonitor.Application.Tests.csproj", "{F693FDEB-E9B0-4CD3-868C-E30F30399AAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{1FB057D6-BDFE-4931-AA8C-441472924A57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FB057D6-BDFE-4931-AA8C-441472924A57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FB057D6-BDFE-4931-AA8C-441472924A57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F693FDEB-E9B0-4CD3-868C-E30F30399AAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F693FDEB-E9B0-4CD3-868C-E30F30399AAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F693FDEB-E9B0-4CD3-868C-E30F30399AAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F693FDEB-E9B0-4CD3-868C-E30F30399AAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
