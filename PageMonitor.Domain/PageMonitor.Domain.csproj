@@ -7,7 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Enums\" />
+    <Compile Remove="Enums\ResultPropertyCompareOperatorEnum.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Enums\ResultPropertyCompareOperatorEnum.cs" />
   </ItemGroup>
 
 </Project>
