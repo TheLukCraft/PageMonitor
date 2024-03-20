@@ -1,15 +1,15 @@
-namespace PageMonitor.Domain.Enums
+﻿namespace PageMonitor.Domain.Enums
 {
-	public enum ResultPropertyCompareOperatorEnum
-	{
-		Equal = 0,
+    public enum ResultPropertyCompareOperatorEnum
+    {
+        Equal = 0,
 
-		NotEqual = 1,
+        NotEqual = 1,
 
-		GreaterThan = 2,
+        GreaterThan = 2,
 
-		LessThan = 3,
+        LessThan = 3,
 
-		Contains = 4,
-	}
+        Contains = 4,
+    }
 }
